@@ -1,10 +1,29 @@
+# Python
 __pycache__/
 *.py[cod]
-.env
-.venv/
+
+# Virtual environments
 venv/
+.venv/
+env/
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# macOS
 .DS_Store
 
-# Model artifacts
+# ML models
+*.pt
+*.pth
 *.pkl
-*.joblib
+
+# Logs
+*.log
+
+# Node
+node_modules/

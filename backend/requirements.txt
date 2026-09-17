@@ -1,1 +1,8 @@
-# Add backend dependencies here.
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+numpy
+scipy
+scikit-learn
+python-dotenv
