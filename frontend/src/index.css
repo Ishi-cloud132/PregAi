@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Dark theme — navy-tinted near-black, same accent family as light mode
+     so switching modes doesn't change the app's identity, just its canvas. */
+  :root,
+  :root[data-theme='dark'] {
+    --c-base: 11 13 18;
+    --c-base-raised: 14 16 22;
+    --c-surface: 18 20 27;
+    --c-surface-elevated: 23 26 36;
+    --c-surface-hover: 29 33 46;
+    --c-border: 38 43 58;
+    --c-border-subtle: 27 30 40;
+    --c-ink: 241 242 246;
+    --c-ink-muted: 148 153 166;
+    --c-ink-faint: 94 99 115;
+    --c-brand: 91 141 239;
+    --c-brand-dim: 61 111 209;
+    --c-brand-glow: 127 166 242;
+    --c-secondary: 45 212 191;
+    --c-secondary-dim: 13 148 136;
+    --c-accent-purple: 167 139 250;
+    --c-accent-purple-dim: 139 92 246;
+    --c-accent-gold: 251 191 36;
+    --c-accent-gold-dim: 217 119 6;
+    --c-status-normal: 52 211 153;
+    --c-status-warning: 251 191 36;
+    --c-status-critical: 248 113 113;
+    --c-status-disconnected: 100 116 139;
+    --c-status-demo: 129 140 248;
+    --bg-glow-1: 0.09;
+    --bg-glow-2: 0.05;
+  }
+
+  /* Light theme — the default. Paper-white background with a deep navy
+     primary, teal secondary, and violet/gold decorative accents, matching
+     the NIRMAY / SIH pitch deck's palette. */
+  :root[data-theme='light'] {
+    --c-base: 245 245 243;
+    --c-base-raised: 255 255 255;
+    --c-surface: 255 255 255;
+    --c-surface-elevated: 238 241 246;
+    --c-surface-hover: 231 235 242;
+    --c-border: 221 226 234;
+    --c-border-subtle: 233 236 241;
+    --c-ink: 30 36 48;
+    --c-ink-muted: 91 100 114;
+    --c-ink-faint: 139 147 161;
+    --c-brand: 30 58 95;
+    --c-brand-dim: 23 44 74;
+    --c-brand-glow: 51 90 138;
+    --c-secondary: 13 148 136;
+    --c-secondary-dim: 15 118 110;
+    --c-accent-purple: 124 58 237;
+    --c-accent-purple-dim: 91 33 182;
+    --c-accent-gold: 180 131 33;
+    --c-accent-gold-dim: 146 90 22;
+    --c-status-normal: 5 150 105;
+    --c-status-warning: 217 119 6;
+    --c-status-critical: 220 38 38;
+    --c-status-disconnected: 100 116 139;
+    --c-status-demo: 99 102 241;
+    --bg-glow-1: 0.05;
+    --bg-glow-2: 0.04;
+  }
+
+  html {
+    @apply bg-base text-ink;
+  }
+  body {
+    @apply font-sans antialiased;
+    background:
+      radial-gradient(circle at 15% 0%, rgb(var(--c-brand) / var(--bg-glow-1)), transparent 42%),
+      radial-gradient(circle at 85% 15%, rgb(var(--c-secondary) / var(--bg-glow-2)), transparent 38%),
+      rgb(var(--c-base));
+    min-height: 100vh;
+    transition: background-color 200ms ease;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+  ::selection {
+    background: rgb(var(--c-brand) / 0.3);
+  }
+  *:focus-visible {
+    outline: 2px solid rgb(var(--c-brand));
+    outline-offset: 2px;
+  }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgb(var(--c-border)); border-radius: 8px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgb(var(--c-surface-hover)); }
+}
+
+@layer components {
+  .card {
+    @apply relative bg-surface border border-border rounded-lg bg-card-sheen;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer utilities {
+  button:not(:disabled), a {
+    transition-property: color, background-color, border-color, transform, box-shadow, opacity;
+    transition-duration: 150ms;
+  }
+  button:not(:disabled):active {
+    transform: scale(0.97);
+  }
+  .stagger-in {
+    animation: fadeInUp 0.45s ease-out both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
